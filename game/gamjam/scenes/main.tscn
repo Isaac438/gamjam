@@ -44,3 +44,17 @@ mesh = SubResource("PlaneMesh_thutw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1340180420]
 shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="obstacles" type="Node3D" parent="." unique_id=1712977374]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="obstacles" unique_id=1261626522]
+transform = Transform3D(0.15284882, 0, -0.9882496, 0, 1, 0, 0.9882496, 0, 0.15284882, -2.2004414, 0.5, -17.575596)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="obstacles" unique_id=1353155633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6.092)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="obstacles" unique_id=265752026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4616685, 0.5, -6.092)
+use_collision = true
