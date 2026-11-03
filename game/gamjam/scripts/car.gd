@@ -32,3 +32,5 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("turn_right"):
 		if steering > -0.4:
 			steering -= delta * steer_speed
+
+	print(engine_force)
