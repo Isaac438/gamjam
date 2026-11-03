@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://qmakndc51r37"]
+
+[ext_resource type="PackedScene" uid="uid://cj7l04l8oon0p" path="res://scenes/car/car.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car.gd" id="2_0wfyh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_top_color = Color(0.18875656, 0.4639545, 0.71336395, 1)
+sky_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+ground_bottom_color = Color(0.25567147, 0.14566746, 0.01214115, 1)
+ground_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_thutw"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(100, 0.001, 100)
+
+[node name="main" type="Node3D" unique_id=255340109]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1167124422]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=903342995]
+transform = Transform3D(-0.05233594, -0.61206704, 0.78907216, 0, 0.79015505, 0.61290705, -0.9986295, 0.032077067, -0.04135351, 0, 0, 0)
+light_color = Color(0.99999994, 0.9065897, 0.85272086, 1)
+shadow_enabled = true
+
+[node name="VehicleBody3D" parent="." unique_id=1783698133 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0125501, 0)
+script = ExtResource("2_0wfyh")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=938572198]
+mesh = SubResource("PlaneMesh_thutw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1580901280]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1340180420]
+shape = SubResource("BoxShape3D_0wfyh")
