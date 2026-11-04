@@ -1,7 +1,8 @@
 extends VehicleBody3D
 
-const steer_speed: float = 4.0
-const steer_diminish: float = 1.5
+const steer_speed: float = 1.0
+const steer_diminish: float = 1.0
+const speed_modifier := 0.5
 
 const max_engine_force := 50.0
 const reverse_max_force := 40.0
@@ -14,15 +15,21 @@ const brake_accel := 30.0
 func _process(delta: float) -> void:
 	var target_force := 0.0
 	var target_brake := 0.0
+	var forward_speed := linear_velocity.dot(-global_transform.basis.z)
 
 	if Input.is_action_pressed("gas"):
-		target_force = max_engine_force
+		if forward_speed < -1.0:
+			target_brake = brake_max
+		else:
+			target_force = max_engine_force
+			target_brake = 0.0
 
 	elif Input.is_action_pressed("brake"):
-		if linear_velocity.length() > 1.0:
+		if forward_speed > 1.0:
 			target_brake = brake_max
 		else:
 			target_force = -reverse_max_force
+			target_brake = 0.0
 
 	var force_rate := accel
 
@@ -42,17 +49,38 @@ func _process(delta: float) -> void:
 	)
 	
 	if Input.is_action_pressed("turn_left"):
-		if steering < 0.4:
-			steering += delta * steer_speed
+		var steer_max := speed_modifier / linear_velocity.length()
+		if steer_max > 0.4:
+			steer_max = 0.4
+		
+		steering = move_toward(
+			steering,
+			steer_max,
+			steer_speed*delta
+		)
+		
+	elif Input.is_action_pressed("turn_right"):
+		var steer_max := -speed_modifier / linear_velocity.length()
+		if steer_max < -0.4:
+			steer_max = -0.4
+		steering = move_toward(
+			steering,
+			steer_max,
+			steer_speed*delta
+		)
+		
 	else:
 		if steering > 0.02:
-			steering -= steer_diminish*delta
+			steering = move_toward(
+				steering,
+				0.0,
+				steer_diminish*delta
+			)
 		elif steering < 0.02:
-			steering += steer_diminish*delta
+			steering = move_toward(
+				steering,
+				0.0,
+				steer_diminish*delta
+			)
 		else:
 			steering = 0.0
-	if Input.is_action_pressed("turn_right"):
-		if steering > -0.4:
-			steering -= delta * steer_speed
-
-	print(engine_force)
