@@ -2,7 +2,7 @@ extends VehicleBody3D
 
 const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
-const speed_modifier := 0.5
+const speed_modifier := 1.0
 
 const max_engine_force := 50.0
 const reverse_max_force := 40.0
