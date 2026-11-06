@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://qmakndc51r37"]
+
+[ext_resource type="PackedScene" uid="uid://cj7l04l8oon0p" path="res://scenes/car/car.tscn" id="1_no2ut"]
+[ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car.gd" id="2_w4uxf"]
+[ext_resource type="PackedScene" uid="uid://e2x26dmxmsuw" path="res://scenes/obstacles/building.tscn" id="3_1ipt3"]
+[ext_resource type="PackedScene" uid="uid://tv67hgyp066y" path="res://scenes/obstacles/tree.tscn" id="4_vdalq"]
+[ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="5_ml6og"]
+[ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="6_orcxf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_top_color = Color(0.18875656, 0.4639545, 0.71336395, 1)
+sky_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+ground_bottom_color = Color(0.25567147, 0.14566746, 0.01214115, 1)
+ground_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_thutw"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(100, 0.001, 100)
+
+[node name="main" type="Node3D" unique_id=255340109]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1167124422]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=903342995]
+transform = Transform3D(-0.05233594, -0.61206704, 0.78907216, 0, 0.79015505, 0.61290705, -0.9986295, 0.032077067, -0.04135351, 0, 0, 0)
+light_color = Color(0.99999994, 0.9065897, 0.85272086, 1)
+shadow_enabled = true
+
+[node name="VehicleBody3D" parent="." unique_id=1783698133 instance=ExtResource("1_no2ut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0125501, 0)
+script = ExtResource("2_w4uxf")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=938572198]
+mesh = SubResource("PlaneMesh_thutw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1580901280]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1340180420]
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="obstacles" type="Node3D" parent="." unique_id=1712977374]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="obstacles" unique_id=1261626522]
+transform = Transform3D(0.15284882, 0, -0.9882496, 0, 1, 0, 0.9882496, 0, 0.15284882, -2.2004414, 0.5, -17.575596)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="obstacles" unique_id=1353155633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6.092)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="obstacles" unique_id=265752026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4616685, 0.5, -6.092)
+use_collision = true
+
+[node name="building" parent="obstacles" unique_id=1291524497 instance=ExtResource("3_1ipt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.077998, 0.00049996376, -17.943716)
+
+[node name="tree" parent="obstacles" unique_id=1192009928 instance=ExtResource("4_vdalq")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 3.4053168, 0.29391545, -9.3277235)
+
+[node name="road" parent="." unique_id=1305813009 instance=ExtResource("5_ml6og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12815678, 0.0005002022, 0.55718994)
+
+[node name="road_center" parent="." unique_id=170145015 instance=ExtResource("6_orcxf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09884322, 0.0005002022, 4.554229)
