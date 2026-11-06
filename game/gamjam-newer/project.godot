@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Preload"
-run/main_scene="uid://qmakndc51r37"
+run/main_scene="uid://buqlc02euoal"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.svg"
 

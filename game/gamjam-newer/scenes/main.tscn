@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://qmakndc51r37"]
+[gd_scene format=3 uid="uid://buqlc02euoal"]
 
 [ext_resource type="PackedScene" uid="uid://cj7l04l8oon0p" path="res://scenes/car/car.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car.gd" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://tv67hgyp066y" path="res://scenes/obstacles/tree.tscn" id="4_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="6_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://e2x26dmxmsuw" path="res://scenes/obstacles/building.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
@@ -56,8 +56,8 @@ script = ExtResource("5_tbgi4")
 
 [node name="map" type="Node3D" parent="." unique_id=1815817768]
 
-[node name="tree" parent="map" unique_id=1192009928 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 7.25, 0)
+[node name="building" parent="map" unique_id=2015796691 instance=ExtResource("6_tefeu")]
+transform = Transform3D(1.6, 0, 0, 0, 2, 0, 0, 0, 1.6, -16, 0, 0)
 
 [node name="road" parent="map" unique_id=1305813009 instance=ExtResource("6_o6xl0")]
 
@@ -103,5 +103,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 16)
 [node name="road_center4" parent="map" unique_id=1418564391 instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 16)
 
-[node name="building" parent="map" unique_id=1291524497 instance=ExtResource("6_tefeu")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16, 0, 0)
+[node name="tree" parent="map" unique_id=1192009928 instance=ExtResource("4_o6xl0")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -16, 7.5, 0)
