@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6t1xrjeipbut"
-path.s3tc="res://.godot/imported/building_concrete.png-63a0a3226717a1dc554d0114da6b2a6b.s3tc.ctex"
+uid="uid://dbeegpjchqvdc"
+path.s3tc="res://.godot/imported/road_road Base Color.png-0c52a38e024ccc2f6c39c2e38069aff3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "fd3246ae15be53260426752590b3e16a"
+"md5": "a50731bcfbf487aa0ceaa83eb9197dc4"
 }
 
 [deps]
 
-source_file="res://scenes/building_concrete.png"
-dest_files=["res://.godot/imported/building_concrete.png-63a0a3226717a1dc554d0114da6b2a6b.s3tc.ctex"]
+source_file="res://scenes/road/road_road Base Color.png"
+dest_files=["res://.godot/imported/road_road Base Color.png-0c52a38e024ccc2f6c39c2e38069aff3.s3tc.ctex"]
 
 [params]
 

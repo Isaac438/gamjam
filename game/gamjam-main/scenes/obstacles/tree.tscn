@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://tv67hgyp066y"]
 
-[ext_resource type="Texture2D" uid="uid://dtuuh1jpwf4gv" path="res://scenes/tree_wood Base Color.png" id="1_vplca"]
-[ext_resource type="Texture2D" uid="uid://cjx7qusa4frje" path="res://scenes/tree_tree Base Color.png" id="2_viusy"]
+[ext_resource type="Texture2D" uid="uid://dtuuh1jpwf4gv" path="res://scenes/obstacles/tree_wood Base Color.png" id="1_vplca"]
+[ext_resource type="Texture2D" uid="uid://cjx7qusa4frje" path="res://scenes/obstacles/tree_tree Base Color.png" id="2_viusy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcd6y"]
 resource_name = "wood"

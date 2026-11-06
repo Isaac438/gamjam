@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjx7qusa4frje"
-path.s3tc="res://.godot/imported/tree_tree Base Color.png-0e4647831872feec9bb880a53387a397.s3tc.ctex"
+path.s3tc="res://.godot/imported/tree_tree Base Color.png-42c7d811cb02204bfdabdd483a45ba47.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://scenes/tree_tree Base Color.png"
-dest_files=["res://.godot/imported/tree_tree Base Color.png-0e4647831872feec9bb880a53387a397.s3tc.ctex"]
+source_file="res://scenes/obstacles/tree_tree Base Color.png"
+dest_files=["res://.godot/imported/tree_tree Base Color.png-42c7d811cb02204bfdabdd483a45ba47.s3tc.ctex"]
 
 [params]
 

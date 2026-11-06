@@ -182,6 +182,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wh0gg")
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_wcb47"]
+
 [node name="VehicleBody3D" type="VehicleBody3D" unique_id=1783698133]
 physics_material_override = SubResource("PhysicsMaterial_thutw")
 center_of_mass_mode = 1
@@ -257,6 +259,18 @@ damping_relaxation = 10.0
 [node name="car_wheel" parent="front_right_wheel" unique_id=599118560 instance=ExtResource("3_rytg7")]
 transform = Transform3D(-2.1855694e-08, 0.40000004, -2.18557e-08, 0, -1.7484556e-08, -0.5000001, -0.5, -1.7484556e-08, 9.553429e-16, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1634636311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2011878, 0.3485431, 0.26478553)
+[node name="Head" type="Node3D" parent="." unique_id=1360139768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19267702, 0.29985523, 0.05162239)
+
+[node name="CabCamera" type="Camera3D" parent="Head" unique_id=1634636311]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+current = true
 fov = 36.1481
+
+[node name="CameraArm" type="SpringArm3D" parent="Head" unique_id=1411814768]
+transform = Transform3D(0.9999957, -0.00053855777, -0.0028734473, 0.0011621083, 0.97512203, 0.22166547, 0.0026825825, -0.22166789, 0.97511846, 0.19267702, -0.29985523, -0.05162239)
+shape = SubResource("SeparationRayShape3D_wcb47")
+spring_length = 3.0
+
+[node name="ThirdPersonCamera" type="Camera3D" parent="Head/CameraArm" unique_id=1570893805]
+transform = Transform3D(0.9999962, 0.0011358937, 0.002502545, -0.000486696, 0.96939087, -0.2455222, -0.0027048306, 0.24552003, 0.9693879, -1.8626451e-09, 0.061660707, 3.0290287)

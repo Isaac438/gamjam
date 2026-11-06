@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtuuh1jpwf4gv"
-path.s3tc="res://.godot/imported/tree_wood Base Color.png-95f3d4346ffeaad0a47b3c7609d5fdbe.s3tc.ctex"
+uid="uid://b6t1xrjeipbut"
+path.s3tc="res://.godot/imported/building_concrete.png-dee4b7d9e16883007669f860d8301fca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "fec237362f03deee975d24b3d56954a7"
+"md5": "fd3246ae15be53260426752590b3e16a"
 }
 
 [deps]
 
-source_file="res://scenes/tree_wood Base Color.png"
-dest_files=["res://.godot/imported/tree_wood Base Color.png-95f3d4346ffeaad0a47b3c7609d5fdbe.s3tc.ctex"]
+source_file="res://scenes/obstacles/building_concrete.png"
+dest_files=["res://.godot/imported/building_concrete.png-dee4b7d9e16883007669f860d8301fca.s3tc.ctex"]
 
 [params]
 
