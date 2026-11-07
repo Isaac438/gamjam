@@ -9,7 +9,7 @@ extends VehicleBody3D
 
 const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
-const speed_modifier := 1.0
+const speed_modifier := 1.5
 
 const max_engine_force := 50.0
 const reverse_max_force := 40.0
@@ -28,8 +28,8 @@ func _ready() -> void:
 	third_person_camera.current = false
 	cab_camera.current = true
 	
-
-func _unhandled_input(event: InputEvent) -> void:
+	
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if !third_person_camera_mode:
 			head.rotate_y(-event.relative.x * SENS)
@@ -40,7 +40,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera_arm.rotate_x(-event.relative.y * SENS)
 			rotation.x = clamp(rotation.x, deg_to_rad(-45), deg_to_rad(90))
 			
-func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("escape_key") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -92,8 +91,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("turn_left"):
 		var steer_max := speed_modifier / linear_velocity.length()
-		if steer_max > 0.5:
-			steer_max = 0.5
+		if steer_max > 0.6:
+			steer_max = 0.6
 		
 		steering = move_toward(
 			steering,
