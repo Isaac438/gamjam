@@ -4,8 +4,6 @@ extends VehicleBody3D
 @onready var cab_camera: Camera3D = $Head/CabCamera
 @onready var camera_arm: SpringArm3D = $Head/CameraArm
 @onready var third_person_camera: Camera3D = $Head/CameraArm/ThirdPersonCamera
-@onready var wheels: Array = get_tree().get_nodes_in_group("wheel")
-
 
 const steer_speed: float = 1.0
 const steer_diminish: float = 1.0

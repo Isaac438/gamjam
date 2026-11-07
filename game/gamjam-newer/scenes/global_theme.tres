@@ -1,0 +1,18 @@
+[gd_resource type="Theme" format=3 uid="uid://b11svmoj03hcl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(1, 1, 1, 0.32156864)
+border_width_left = 11
+border_width_top = 11
+border_width_right = 11
+border_width_bottom = 11
+border_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+border_blend = true
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/styles/normal = SubResource("StyleBoxFlat_85g3d")

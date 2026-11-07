@@ -98,18 +98,18 @@ radius = 1.0410156
 transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, 0, 0)
 
 [node name="Cylinder" type="MeshInstance3D" parent="." unique_id=85577804]
-transform = Transform3D(0.723846, 0, 0, 0, 0.61128277, 0, 0, 0, 0.723846, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_t6h5h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder" unique_id=2021954055]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -0.03853178)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder/StaticBody3D" unique_id=183587771]
-transform = Transform3D(-0.0041262214, -0.99999136, 0, 0.9999915, -0.0041261027, 0, 0, 0, 0.9999999, 0.015681697, -0.00093647087, 0)
+transform = Transform3D(-4.371139e-08, -0.9999999, 0, 1, -4.3711385e-08, 0, 0, 0, 0.9999999, 0.015681697, -0.00093647087, 0)
 shape = SubResource("CylinderShape3D_vplca")
 
 [node name="Cylinder_001" type="MeshInstance3D" parent="." unique_id=599674961]
-transform = Transform3D(1.7941337, 0, 0, 0, 0.87804073, 0, 0, 0, 1.7941337, 0, 1.4893234, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 1.4893234, 0)
 mesh = SubResource("ArrayMesh_o0n0b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder_001" unique_id=502364023]

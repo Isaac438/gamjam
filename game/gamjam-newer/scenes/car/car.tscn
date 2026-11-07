@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c8p6j75ge4lnw" path="res://scenes/car/car_Material.png" id="1_yhfra"]
 [ext_resource type="Material" uid="uid://bovw2lh1bslnc" path="res://scenes/car/car_window.tres" id="2_rytg7"]
 [ext_resource type="PackedScene" uid="uid://b5jxcjv1lu23r" path="res://scenes/car/car_wheel.tscn" id="3_rytg7"]
+[ext_resource type="PackedScene" uid="uid://cs8ajbxmyjvba" path="res://scenes/instructor.tscn" id="4_x7uf8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_thutw"]
 
@@ -282,3 +283,6 @@ transform = Transform3D(0.9999962, 0.0011358937, 0.002502545, -0.000486696, 0.96
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." unique_id=1043975791]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 polygon = PackedVector2Array(1.4859054, -0.34797892, 1.4846212, -0.047313288, 1.1216327, 0.11246722, 0.79494315, 0.15604384, 0.2286823, 0.48286766, -0.7296056, 0.4683422, -1.4701015, 0.07615345, -1.4831271, -0.34474817)
+
+[node name="instructor" parent="." unique_id=189268596 instance=ExtResource("4_x7uf8")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.28879565, 0.17608136, 0)
