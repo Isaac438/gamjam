@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car.gd" id="2_0wfyh"]
 [ext_resource type="Theme" uid="uid://b11svmoj03hcl" path="res://scenes/global_theme.tres" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="5_choun"]
 [ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dks6tccjlkmf7" path="res://scenes/obstacles/grass.tscn" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://xk6taeodcby7" path="res://scenes/loading_screen.tscn" id="9_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://3l3ihweg7slu" path="res://scenes/obstacles/park_floor.tscn" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.18875656, 0.4639545, 0.71336395, 1)
@@ -25,12 +28,6 @@ sky = SubResource("Sky_0wfyh")
 glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_o6xl0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7ksya"]
-size = Vector3(32, 0.01, 16)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48d6w"]
-albedo_color = Color(0.3764706, 0.7411765, 0, 1)
 
 [node name="main" type="Node3D" unique_id=255340109]
 
@@ -76,156 +73,13 @@ clip_text = true
 script = ExtResource("5_tbgi4")
 metadata/_edit_use_anchors_ = true
 
-[node name="map" type="Node3D" parent="." unique_id=1815817768]
-
-[node name="building" parent="map" unique_id=2015796691 instance=ExtResource("6_tefeu")]
-transform = Transform3D(1.6, 0, 0, 0, 2, 0, 0, 0, 1.6, -16, 0, 0)
-
-[node name="tree" parent="map" unique_id=1192009928 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -16, 7.5, 0)
-
-[node name="park_floor" type="CSGMesh3D" parent="map" unique_id=1254317203]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_7ksya")
-material = SubResource("StandardMaterial3D_48d6w")
-
-[node name="trees" type="Node3D" parent="map" unique_id=568961472]
-
-[node name="tree" parent="map/trees" unique_id=1997778062 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -67.35593, 0, -5.6465244)
-
-[node name="tree2" parent="map/trees" unique_id=1823849684 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -60.822678, 0, -5.6465244)
-
-[node name="tree3" parent="map/trees" unique_id=1818405259 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -52.981422, 0, -5.6465244)
-
-[node name="tree4" parent="map/trees" unique_id=1610729885 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -44.571323, 0, -5.6465244)
-
-[node name="tree5" parent="map/trees" unique_id=604442608 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -44.571323, 0, 5.5587473)
-
-[node name="tree6" parent="map/trees" unique_id=58677157 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -52.76905, 0, 5.5587473)
-
-[node name="tree7" parent="map/trees" unique_id=1570713888 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -59.77237, 0, 5.5587473)
-
-[node name="tree8" parent="map/trees" unique_id=1756540423 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -68.12251, 0, 5.5587473)
-
-[node name="grass_group" type="Node3D" parent="map" unique_id=610067725]
-
-[node name="grass" parent="map/grass_group" unique_id=1646462611 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -44.518215, 0, 4.3063097)
-
-[node name="grass13" parent="map/grass_group" unique_id=244924917 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -70.55795, 0, 6.990321)
-
-[node name="grass15" parent="map/grass_group" unique_id=1904106253 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -66.00832, 0, 6.990321)
-
-[node name="grass16" parent="map/grass_group" unique_id=663408483 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -66.00832, 0, 4.5775456)
-
-[node name="grass17" parent="map/grass_group" unique_id=1473417487 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -66.00832, 0, -6.2054048)
-
-[node name="grass18" parent="map/grass_group" unique_id=745101628 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -71.61388, 0, -6.2054048)
-
-[node name="grass19" parent="map/grass_group" unique_id=1228029277 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -71.61388, 0, 2.1171966)
-
-[node name="grass20" parent="map/grass_group" unique_id=430174833 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -51.0767, 0, -1.9267669)
-
-[node name="grass21" parent="map/grass_group" unique_id=784906040 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -45.33645, 0, -1.9267669)
-
-[node name="grass22" parent="map/grass_group" unique_id=1654997996 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -45.33645, 0, -5.988626)
-
-[node name="grass14" parent="map/grass_group" unique_id=1415885132 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -70.55795, 0, 4.857781)
-
-[node name="grass2" parent="map/grass_group" unique_id=1608355651 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -46.08403, 0, 4.3063097)
-
-[node name="grass3" parent="map/grass_group" unique_id=790942151 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -45.44237, 0, 5.4090953)
-
-[node name="grass4" parent="map/grass_group" unique_id=404611571 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -54.703556, 0, -1.8725672)
-
-[node name="grass5" parent="map/grass_group" unique_id=1883540912 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -56.26937, 0, -1.8725672)
-
-[node name="grass6" parent="map/grass_group" unique_id=1593587458 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -55.151363, 0, -0.7697816)
-
-[node name="grass7" parent="map/grass_group" unique_id=1043908396 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -55.565613, 0, -0.7697816)
-
-[node name="grass9" parent="map/grass_group" unique_id=940468604 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -64.41353, 0, -3.9171667)
-
-[node name="grass10" parent="map/grass_group" unique_id=931220571 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -65.97934, 0, -3.9171667)
-
-[node name="grass11" parent="map/grass_group" unique_id=387306372 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -64.861336, 0, -2.8143811)
-
-[node name="grass12" parent="map/grass_group" unique_id=1805049091 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -65.27559, 0, -2.8143811)
-
-[node name="grass8" parent="map/grass_group" unique_id=724127452 instance=ExtResource("6_tipki")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -55.565613, 0, 5.6272006)
-
-[node name="roads" type="Node3D" parent="map" unique_id=1448335971]
-
-[node name="road" parent="map/roads" unique_id=1305813009 instance=ExtResource("6_o6xl0")]
-
-[node name="road2" parent="map/roads" unique_id=1919399245 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, -16)
-
-[node name="road3" parent="map/roads" unique_id=314470405 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 0)
-
-[node name="road5" parent="map/roads" unique_id=2064755501 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -48, 0, -16)
-
-[node name="road6" parent="map/roads" unique_id=351457516 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -64, 0, -16)
-
-[node name="road7" parent="map/roads" unique_id=2055308719 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -80, 0, 0)
-
-[node name="road8" parent="map/roads" unique_id=2066556934 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -48, 0, 16)
-
-[node name="road9" parent="map/roads" unique_id=759619910 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -64, 0, 16)
-
-[node name="road4" parent="map/roads" unique_id=2002064626 instance=ExtResource("6_o6xl0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, 16)
-
-[node name="road_center" parent="map/roads" unique_id=170145015 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
-
-[node name="road_center2" parent="map/roads" unique_id=601999448 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
-
-[node name="road_center3" parent="map/roads" unique_id=163774879 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -16)
-
-[node name="road_center5" parent="map/roads" unique_id=1568635250 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, -16)
-
-[node name="road_center6" parent="map/roads" unique_id=546100491 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 16)
-
-[node name="road_center4" parent="map/roads" unique_id=1876233327 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 16)
+[node name="map" type="Node3D" parent="." unique_id=958100506 node_paths=PackedStringArray("ui")]
+script = ExtResource("5_choun")
+building = ExtResource("6_tefeu")
+grass = ExtResource("6_tipki")
+tree = ExtResource("4_o6xl0")
+loading_screen = ExtResource("9_eb6dy")
+road = ExtResource("6_o6xl0")
+road_center = ExtResource("7_o6xl0")
+park_floor = ExtResource("11_ya4ey")
+ui = NodePath("../crosshair_and_debug")

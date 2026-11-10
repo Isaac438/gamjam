@@ -51,6 +51,11 @@ func _physics_process(delta: float) -> void:
 	var target_brake := 0.0
 	var forward_speed := linear_velocity.dot(-global_transform.basis.z)
 	
+	if forward_speed > 7.0:
+		global.debug_message = "Slow it dow therre boy"
+	else:
+		global.debug_message = ""
+	
 	if Input.is_action_just_pressed("camera_toggle"):
 		third_person_camera_mode = !third_person_camera_mode
 		cab_camera.current = !third_person_camera_mode
