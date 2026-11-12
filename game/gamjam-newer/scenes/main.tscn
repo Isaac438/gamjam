@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cj7l04l8oon0p" path="res://scenes/car/car.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car.gd" id="2_0wfyh"]
 [ext_resource type="Theme" uid="uid://b11svmoj03hcl" path="res://scenes/global_theme.tres" id="3_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cq62vkl4eoa2n" path="res://scenes/lose_screen.tscn" id="3_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="5_choun"]
 [ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_tbgi4"]
@@ -12,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://xk6taeodcby7" path="res://scenes/loading_screen.tscn" id="9_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://3l3ihweg7slu" path="res://scenes/obstacles/park_floor.tscn" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://5ad6x1yytgq0" path="res://scripts/cop_car_spawner.gd" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://bvb15k3erlm0u" path="res://scenes/car/cop_car.tscn" id="14_a8y0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.18875656, 0.4639545, 0.71336395, 1)
@@ -29,6 +32,12 @@ glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_o6xl0"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_jbj1t"]
+geometry_parsed_geometry_type = 1
+cell_height = 0.15
+agent_height = 0.15
+agent_radius = 5.0
+
 [node name="main" type="Node3D" unique_id=255340109]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1167124422]
@@ -39,9 +48,13 @@ transform = Transform3D(0.44704795, -0.52056015, 0.7274376, 0.0020773127, 0.8138
 light_color = Color(1, 0.79376775, 0.6425794, 1)
 shadow_enabled = true
 
-[node name="VehicleBody3D" parent="." unique_id=1783698133 instance=ExtResource("1_o5qli")]
+[node name="VehicleBody3D" parent="." unique_id=1783698133 node_paths=PackedStringArray("ui") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.97558, 0)
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("2_0wfyh")
+lose_screen = ExtResource("3_jkv2x")
+ui = NodePath("../crosshair_and_debug")
 
 [node name="crosshair_and_debug" type="CanvasLayer" parent="." unique_id=1557573988]
 
@@ -73,7 +86,14 @@ clip_text = true
 script = ExtResource("5_tbgi4")
 metadata/_edit_use_anchors_ = true
 
-[node name="map" type="Node3D" parent="." unique_id=958100506 node_paths=PackedStringArray("ui")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1871210762]
+navigation_mesh = SubResource("NavigationMesh_jbj1t")
+
+[node name="cop_cars" type="Node3D" parent="NavigationRegion3D" unique_id=1791055672]
+script = ExtResource("13_trceg")
+cop = ExtResource("14_a8y0u")
+
+[node name="map" type="Node3D" parent="NavigationRegion3D" unique_id=958100506 node_paths=PackedStringArray("ui")]
 script = ExtResource("5_choun")
 building = ExtResource("6_tefeu")
 grass = ExtResource("6_tipki")
@@ -82,4 +102,4 @@ loading_screen = ExtResource("9_eb6dy")
 road = ExtResource("6_o6xl0")
 road_center = ExtResource("7_o6xl0")
 park_floor = ExtResource("11_ya4ey")
-ui = NodePath("../crosshair_and_debug")
+ui = NodePath("../../crosshair_and_debug")

@@ -16,7 +16,8 @@ func _process(delta: float) -> void:
 				await get_tree().process_frame
 			animate_text(global.debug_message)
 			while animating:
-				await get_tree().process_frame
+				if get_tree():
+					await get_tree().process_frame
 				
 			await get_tree().create_timer(1.0).timeout
 			fade_out()

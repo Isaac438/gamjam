@@ -4,6 +4,8 @@ extends VehicleBody3D
 @onready var cab_camera: Camera3D = $Head/CabCamera
 @onready var camera_arm: SpringArm3D = $Head/CameraArm
 @onready var third_person_camera: Camera3D = $Head/CameraArm/ThirdPersonCamera
+@export var lose_screen: PackedScene
+@export var ui: CanvasLayer
 
 const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
@@ -28,6 +30,7 @@ func _ready() -> void:
 	
 	
 func _input(event: InputEvent) -> void:
+	#region camera movement
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if !third_person_camera_mode:
 			head.rotate_y(-event.relative.x * SENS)
@@ -38,6 +41,8 @@ func _input(event: InputEvent) -> void:
 			camera_arm.rotate_x(-event.relative.y * SENS)
 			rotation.x = clamp(rotation.x, deg_to_rad(-45), deg_to_rad(90))
 			
+	#endregion
+	
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("escape_key") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -51,10 +56,16 @@ func _physics_process(delta: float) -> void:
 	var target_brake := 0.0
 	var forward_speed := linear_velocity.dot(-global_transform.basis.z)
 	
+	#region check collisions
+	var colliding_bodies = get_colliding_bodies()
+	for body in colliding_bodies:
+		if body.is_in_group("cops"):
+			var lose_screen1 = lose_screen.instantiate()
+			ui.add_child(lose_screen1)
+	#endregion
+	
 	if forward_speed > 7.0:
-		global.debug_message = "Slow it dow therre boy"
-	else:
-		global.debug_message = ""
+		global.debug_message = "Don't let those cops catch you!"
 	
 	if Input.is_action_just_pressed("camera_toggle"):
 		third_person_camera_mode = !third_person_camera_mode
@@ -128,3 +139,9 @@ func _physics_process(delta: float) -> void:
 			)
 		else:
 			steering = 0.0
+			
+func _process(_delta: float) -> void:
+	global.player_position = global_position
+	
+func _on_collision(collider: Node):
+	pass

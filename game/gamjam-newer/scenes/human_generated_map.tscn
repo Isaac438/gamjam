@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://djplrylykxe3b"]
 
-[ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="1_3smed"]
 [ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="2_h2xw4"]
 [ext_resource type="PackedScene" uid="uid://dks6tccjlkmf7" path="res://scenes/obstacles/grass.tscn" id="3_l4v05"]
 [ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="4_4xk66"]
@@ -14,12 +13,6 @@ size = Vector3(32, 0.01, 16)
 albedo_color = Color(0.3764706, 0.7411765, 0, 1)
 
 [node name="map" type="Node3D" unique_id=459958271]
-script = ExtResource("1_3smed")
-building = ExtResource("2_h2xw4")
-grass = ExtResource("3_l4v05")
-tree = ExtResource("4_4xk66")
-road = ExtResource("5_he7qy")
-road_center = ExtResource("6_aby55")
 
 [node name="building" parent="." unique_id=2015796691 instance=ExtResource("2_h2xw4")]
 transform = Transform3D(1.6, 0, 0, 0, 2, 0, 0, 0, 1.6, -16, 0, 0)
@@ -128,7 +121,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -65.27559, 0, -2.814381
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -55.565613, 0, 5.6272006)
 
 [node name="roads" type="Node3D" parent="." unique_id=2019126688]
-visible = false
 
 [node name="road" parent="roads" unique_id=1305813009 instance=ExtResource("5_he7qy")]
 

@@ -107,6 +107,7 @@ func _ready() -> void:
 			make_block(x*32,z*32)
 
 	ui.remove_child(loading_screen1)
+	get_parent().bake_navigation_mesh()
 	
 func is_overlapping(piece: Node3D):
 	#fix this later
