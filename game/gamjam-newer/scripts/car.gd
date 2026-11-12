@@ -11,7 +11,7 @@ const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
 const speed_modifier := 1.5
 
-const max_engine_force := 50.0
+const max_engine_force := 100.0
 const reverse_max_force := 40.0
 const brake_max := 2.0
 
@@ -47,7 +47,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("escape_key") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		#print("escape detected")
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event.is_action_pressed("restart"):
 		global.time_played = 0.0
@@ -60,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	var target_force := 0.0
 	var target_brake := 0.0
 	var forward_speed := linear_velocity.dot(-global_transform.basis.z)
-	
+	print(forward_speed)
 	#region check collisions
 	var colliding_bodies = get_colliding_bodies()
 	for body in colliding_bodies:
@@ -77,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		cab_camera.current = !third_person_camera_mode
 		third_person_camera.current = third_person_camera_mode
 
-	if Input.is_action_pressed("gas"):
+	if Input.is_action_pressed("gas") and forward_speed < 10.0:
 		if forward_speed < -1.0:
 			target_brake = brake_max
 		else:
