@@ -15,7 +15,7 @@ const max_engine_force := 50.0
 const reverse_max_force := 40.0
 const brake_max := 2.0
 
-const accel := 100.0
+const accel := 150.0
 const decel := 50.0
 const brake_accel := 30.0
 
@@ -27,6 +27,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	third_person_camera.current = false
 	cab_camera.current = true
+	global.going = true
 	
 	
 func _input(event: InputEvent) -> void:
@@ -49,7 +50,11 @@ func _input(event: InputEvent) -> void:
 		#print("escape detected")
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+		global.time_played = 0.0
+		if get_tree():
+			get_tree().reload_current_scene()
+		else:
+			return
 
 func _physics_process(delta: float) -> void:
 	var target_force := 0.0
@@ -142,6 +147,3 @@ func _physics_process(delta: float) -> void:
 			
 func _process(_delta: float) -> void:
 	global.player_position = global_position
-	
-func _on_collision(collider: Node):
-	pass

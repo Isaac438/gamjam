@@ -13,14 +13,19 @@ func _process(delta: float) -> void:
 		if !animating and global.debug_message != text:
 			fade_in()
 			while fading == 1:
-				await get_tree().process_frame
+				if get_tree():
+					await get_tree().process_frame
 			animate_text(global.debug_message)
 			while animating:
 				if get_tree():
 					await get_tree().process_frame
-				
-			await get_tree().create_timer(1.0).timeout
-			fade_out()
+				else:
+					return
+			if get_tree():
+				await get_tree().create_timer(1.0).timeout
+				fade_out()
+			else:
+				return
 			
 func animate_text(new_text) -> void:
 	visible_ratio = 0.0
@@ -41,7 +46,6 @@ func fade_in():
 	
 	tween.tween_property(self, "modulate:a", 1, 0.5)
 	await tween.finished
-	print("done fading in")
 	fading = 0
 	
 func fade_out():
@@ -49,6 +53,5 @@ func fade_out():
 	
 	tween.tween_property(self, "modulate:a", 0, 0.5)
 	await tween.finished
-	print("done fading out")
 	fading = 0
 	
