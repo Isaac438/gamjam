@@ -49,6 +49,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ppgye")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xeef5"]
+albedo_color = Color(0, 0.20392157, 1, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5w72e"]
 resource_name = "glass.001"
 cull_mode = 2
@@ -187,12 +190,14 @@ shadow_mesh = SubResource("ArrayMesh_wh0gg")
 [node name="VehicleBody3D" type="VehicleBody3D" unique_id=1783698133 node_paths=PackedStringArray("nav_agent") groups=["cops"]]
 physics_material_override = SubResource("PhysicsMaterial_thutw")
 center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.5, 0)
 script = ExtResource("1_bv64w")
 nav_agent = NodePath("NavigationAgent3D")
 
 [node name="car body" type="MeshInstance3D" parent="." unique_id=349900232]
 transform = Transform3D(0.6945849, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_yhfra")
+surface_material_override/0 = SubResource("StandardMaterial3D_xeef5")
 
 [node name="windshield" type="MeshInstance3D" parent="." unique_id=142886306]
 transform = Transform3D(0.5204826, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -272,3 +277,5 @@ polygon = PackedVector2Array(1.4859054, -0.34797892, 1.4846212, -0.047313288, 1.
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.28879565, 0.17608136, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1430733118]
+debug_enabled = true
+debug_use_custom = true

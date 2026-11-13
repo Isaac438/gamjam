@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="5_choun"]
 [ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://cwy81mwsi36df" path="res://scripts/gear_icons.gd" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dks6tccjlkmf7" path="res://scenes/obstacles/grass.tscn" id="6_tipki"]
@@ -36,7 +37,7 @@ glow_enabled = true
 geometry_parsed_geometry_type = 1
 cell_height = 0.15
 agent_height = 0.15
-agent_radius = 5.0
+agent_radius = 6.4
 
 [node name="main" type="Node3D" unique_id=255340109]
 
@@ -85,6 +86,46 @@ theme = ExtResource("3_85g3d")
 clip_text = true
 script = ExtResource("5_tbgi4")
 metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="crosshair_and_debug" unique_id=915532969 node_paths=PackedStringArray("N", "First", "Second", "Third")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -127.0
+offset_right = 52.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("6_jbj1t")
+N = NodePath("Label")
+First = NodePath("Label2")
+Second = NodePath("Label3")
+Third = NodePath("Label4")
+
+[node name="Label" type="Label" parent="crosshair_and_debug/VBoxContainer" unique_id=1806408511]
+layout_mode = 2
+theme = ExtResource("3_85g3d")
+text = "N"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="crosshair_and_debug/VBoxContainer" unique_id=443288498]
+modulate = Color(0.67206407, 0.67206407, 0.67206407, 1)
+layout_mode = 2
+theme = ExtResource("3_85g3d")
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="crosshair_and_debug/VBoxContainer" unique_id=55725612]
+layout_mode = 2
+theme = ExtResource("3_85g3d")
+text = "2"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="crosshair_and_debug/VBoxContainer" unique_id=79272985]
+layout_mode = 2
+theme = ExtResource("3_85g3d")
+text = "3"
+horizontal_alignment = 1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1871210762]
 navigation_mesh = SubResource("NavigationMesh_jbj1t")

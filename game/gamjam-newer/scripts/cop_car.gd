@@ -6,8 +6,8 @@ const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
 const speed_modifier := 1.5
 
-const max_engine_force := 50.0
-const reverse_max_force := 40.0
+const max_engine_force := 100.0
+const reverse_max_force := 80.0
 const brake_max := 2.0
 
 const accel := 100.0
@@ -40,13 +40,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		time_since_movement += delta
 		
-	if time_since_movement > 5.0:
+	if time_since_movement > 5.0 or global_position.y < -5.0:
 		get_parent().spawn_car()
 		queue_free()
 		return
 	position_last_frame = global_position
 
-	if next_point_is_forwards and forward_speed < 10.0:
+	if next_point_is_forwards and forward_speed < 15.0:
 		if forward_speed < -1.0:
 			target_brake = brake_max
 		else:

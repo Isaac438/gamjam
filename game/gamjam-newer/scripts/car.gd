@@ -11,9 +11,10 @@ const steer_speed: float = 1.0
 const steer_diminish: float = 1.0
 const speed_modifier := 1.5
 
-const max_engine_force := 100.0
+const max_engine_force := [0.0, 120.0, 40.0, 30.0]
 const reverse_max_force := 40.0
 const brake_max := 2.0
+const max_speed := [0.0, 6.0, 15.0, 100.0]
 
 const accel := 150.0
 const decel := 50.0
@@ -21,6 +22,7 @@ const brake_accel := 30.0
 
 const SENS: float = 0.003
 
+var gear := 1
 var third_person_camera_mode: bool = false
 
 func _ready() -> void:
@@ -54,12 +56,20 @@ func _input(event: InputEvent) -> void:
 			get_tree().reload_current_scene()
 		else:
 			return
+	elif event.is_action_pressed("upshift"):
+		gear -= 1
+		gear = clamp(gear, 0, 3)
+		print("upshift")
+	elif  event.is_action_pressed("downshift"):
+		gear += 1
+		gear = clamp(gear, 0, 3)
+		print("downshift")
 
 func _physics_process(delta: float) -> void:
 	var target_force := 0.0
 	var target_brake := 0.0
 	var forward_speed := linear_velocity.dot(-global_transform.basis.z)
-	print(forward_speed)
+	
 	#region check collisions
 	var colliding_bodies = get_colliding_bodies()
 	for body in colliding_bodies:
@@ -76,11 +86,11 @@ func _physics_process(delta: float) -> void:
 		cab_camera.current = !third_person_camera_mode
 		third_person_camera.current = third_person_camera_mode
 
-	if Input.is_action_pressed("gas") and forward_speed < 10.0:
+	if Input.is_action_pressed("gas") and forward_speed < max_speed[gear]:
 		if forward_speed < -1.0:
 			target_brake = brake_max
 		else:
-			target_force = max_engine_force
+			target_force = max_engine_force[gear]
 			target_brake = 0.0
 
 	elif Input.is_action_pressed("brake"):
@@ -145,4 +155,5 @@ func _physics_process(delta: float) -> void:
 			steering = 0.0
 			
 func _process(_delta: float) -> void:
+	global.gear = gear
 	global.player_position = global_position
