@@ -20,14 +20,21 @@ var position_last_frame : Vector3
 func _ready() -> void:
 	position_last_frame = global_position
 
-var t := 0.0
+var t := randf_range(0.0, 0.5)
 func _process(delta: float) -> void:
 	t += delta
-	if t > 1.0:
+	if t > 0.5:
 		t = 0.0
 		nav_agent.target_position = global.player_position
-	
+
+var time := randf_range(0.0, 0.1)
 func _physics_process(delta: float) -> void:
+	time += delta
+	if time >= 0.1:
+		recalculate_physics(time)
+		time = 0.0
+	
+func recalculate_physics(delta: float) -> void:
 	var target_force := 0.0
 	var target_brake := 0.0
 	var forward_speed := linear_velocity.dot(-global_transform.basis.z)

@@ -277,5 +277,4 @@ polygon = PackedVector2Array(1.4859054, -0.34797892, 1.4846212, -0.047313288, 1.
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.28879565, 0.17608136, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1430733118]
-debug_enabled = true
 debug_use_custom = true
