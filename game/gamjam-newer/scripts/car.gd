@@ -52,8 +52,9 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event.is_action_pressed("restart"):
 		global.time_played = 0.0
+		var title_screen = get_parent().get_parent()
 		if get_tree():
-			get_tree().reload_current_scene()
+			title_screen.restart()
 		else:
 			return
 	elif event.is_action_pressed("upshift"):
@@ -64,6 +65,9 @@ func _input(event: InputEvent) -> void:
 		gear += 1
 		gear = clamp(gear, 0, 3)
 		print("downshift")
+	elif event.is_action_pressed("back_to_title"):
+		var title_screen = get_parent().get_parent()
+		title_screen.back_to_title()
 
 func _physics_process(delta: float) -> void:
 	var target_force := 0.0
