@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://bu171pi5l2og6"]
+
+[ext_resource type="PackedScene" uid="uid://cj7l04l8oon0p" path="res://scenes/car/car.tscn" id="1_lqj67"]
+[ext_resource type="Script" uid="uid://c1scsx7svsmot" path="res://scripts/car.gd" id="2_oiva7"]
+[ext_resource type="Theme" uid="uid://b11svmoj03hcl" path="res://scenes/global_theme.tres" id="4_nupgu"]
+[ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_gfy4l"]
+[ext_resource type="Script" uid="uid://cwy81mwsi36df" path="res://scripts/gear_icons.gd" id="6_avc36"]
+[ext_resource type="Script" uid="uid://5ad6x1yytgq0" path="res://scripts/cop_car_spawner.gd" id="7_ilupx"]
+[ext_resource type="PackedScene" uid="uid://bvb15k3erlm0u" path="res://scenes/car/cop_car.tscn" id="8_4xt0j"]
+[ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="9_uumhs"]
+[ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="10_5000p"]
+[ext_resource type="PackedScene" uid="uid://dks6tccjlkmf7" path="res://scenes/obstacles/grass.tscn" id="11_kvlj2"]
+[ext_resource type="PackedScene" uid="uid://0yw52wxpmem5" path="res://scenes/obstacles/tree.tscn" id="12_6absc"]
+[ext_resource type="PackedScene" uid="uid://xk6taeodcby7" path="res://scenes/loading_screen.tscn" id="13_kytj8"]
+[ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="14_562lr"]
+[ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="15_ock70"]
+[ext_resource type="PackedScene" uid="uid://3l3ihweg7slu" path="res://scenes/obstacles/park_floor.tscn" id="16_24ucy"]
+[ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car2p.gd" id="16_lqj67"]
+[ext_resource type="Script" uid="uid://gkielikewrn6" path="res://scripts/gear_icons2p.gd" id="16_oiva7"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jbj1t"]
+geometry_parsed_geometry_type = 1
+cell_height = 0.15
+agent_height = 0.15
+agent_radius = 6.4
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_top_color = Color(0.18875656, 0.4639545, 0.71336395, 1)
+sky_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+ground_bottom_color = Color(0.25567147, 0.14566746, 0.01214115, 1)
+ground_horizon_color = Color(0.5967822, 0.6380807, 0.66705143, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+glow_enabled = true
+
+[sub_resource type="Theme" id="Theme_o6xl0"]
+
+[node name="main" type="Node3D" unique_id=255340109]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1659595795]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=1462132100]
+layout_mode = 2
+size_flags_horizontal = 19
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=1648698150]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="VehicleBody3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1783698133 instance=ExtResource("1_lqj67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.97558, 0)
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("2_oiva7")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=235375752]
+navigation_mesh = SubResource("NavigationMesh_jbj1t")
+
+[node name="cop_cars" type="Node3D" parent="HBoxContainer/SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1256816199]
+script = ExtResource("7_ilupx")
+cop = ExtResource("8_4xt0j")
+
+[node name="map" type="Node3D" parent="HBoxContainer/SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1042610985 node_paths=PackedStringArray("ui")]
+script = ExtResource("9_uumhs")
+building = ExtResource("10_5000p")
+grass = ExtResource("11_kvlj2")
+tree = ExtResource("12_6absc")
+loading_screen = ExtResource("13_kytj8")
+road = ExtResource("14_562lr")
+road_center = ExtResource("15_ock70")
+park_floor = ExtResource("16_24ucy")
+ui = NodePath("../../crosshair_and_debug")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=284289912]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=664985141]
+transform = Transform3D(0.44704795, -0.5205601, 0.72743756, 0.0020773127, 0.8138266, 0.58110416, -0.8945076, -0.25827032, 0.3649009, 0, 0, 0)
+light_color = Color(1, 0.79376775, 0.6425794, 1)
+shadow_enabled = true
+
+[node name="crosshair_and_debug" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1765614151]
+follow_viewport_enabled = true
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug" unique_id=503618793]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/CenterContainer" unique_id=997337578]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme = SubResource("Theme_o6xl0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug" unique_id=865614159 node_paths=PackedStringArray("N", "First", "Second", "Third")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -192.0
+offset_right = 52.0
+grow_vertical = 0
+script = ExtResource("6_avc36")
+N = NodePath("Label")
+First = NodePath("Label2")
+Second = NodePath("Label3")
+Third = NodePath("Label4")
+
+[node name="Label" type="Label" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/VBoxContainer" unique_id=1846081410]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "N"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/VBoxContainer" unique_id=2108530201]
+modulate = Color(0.67206407, 0.67206407, 0.67206407, 1)
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/VBoxContainer" unique_id=893204655]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "2"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/VBoxContainer" unique_id=439000225]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "3"
+horizontal_alignment = 1
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1271928890]
+layout_mode = 2
+size_flags_horizontal = 19
+size_flags_vertical = 17
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer2" unique_id=333740831]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="crosshair_and_debug2" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer2/SubViewport" unique_id=107418903]
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=1631086486]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/CenterContainer" unique_id=386944239]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme = SubResource("Theme_o6xl0")
+
+[node name="debug_messages" type="Label" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=19168205]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.135
+anchor_top = 0.78400004
+anchor_right = 0.135
+anchor_bottom = 0.78400004
+offset_left = -0.5200043
+offset_top = -0.03201294
+offset_right = 873.48
+offset_bottom = 134.96799
+theme = ExtResource("4_nupgu")
+clip_text = true
+script = ExtResource("5_gfy4l")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=1408667527 node_paths=PackedStringArray("N", "First", "Second", "Third")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -127.0
+offset_right = 52.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("16_oiva7")
+N = NodePath("Label")
+First = NodePath("Label2")
+Second = NodePath("Label3")
+Third = NodePath("Label4")
+
+[node name="Label" type="Label" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/VBoxContainer" unique_id=2017586128]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "N"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/VBoxContainer" unique_id=652284324]
+modulate = Color(0.67206407, 0.67206407, 0.67206407, 1)
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/VBoxContainer" unique_id=1696430353]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "2"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/VBoxContainer" unique_id=1987202240]
+layout_mode = 2
+theme = ExtResource("4_nupgu")
+text = "3"
+horizontal_alignment = 1
+
+[node name="VehicleBody3D2" parent="HBoxContainer/SubViewportContainer2/SubViewport" unique_id=1589069954 instance=ExtResource("1_lqj67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 6.976, 0)
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("16_lqj67")

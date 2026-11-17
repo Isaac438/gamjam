@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://42u5jianm8b"]
+
+[ext_resource type="Theme" uid="uid://b11svmoj03hcl" path="res://scenes/global_theme.tres" id="1_obyet"]
+[ext_resource type="Script" uid="uid://bk334tvn1s6j7" path="res://scripts/tutorial_screen.gd" id="1_rn67y"]
+
+[node name="tutorial_screen" type="Control" unique_id=1633450325]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rn67y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1972874792]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.30980393, 1, 1)
+
+[node name="title" type="Label" parent="." unique_id=1205200947]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_obyet")
+text = "Welcome to the Cop Runner Tutorial!"
+
+[node name="Label" type="Label" parent="." unique_id=1937241541]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072
+anchor_top = 0.5
+anchor_right = 0.072
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = "Movement:"
+
+[node name="Label2" type="Label" parent="." unique_id=1196247135]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.196
+anchor_top = 0.656
+anchor_right = 0.196
+anchor_bottom = 0.687
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " Q "
+
+[node name="Label8" type="Label" parent="." unique_id=1631045790]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.238
+anchor_top = 0.656
+anchor_right = 0.238
+anchor_bottom = 0.687
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " E "
+
+[node name="Label3" type="Label" parent="." unique_id=1470241263]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072
+anchor_top = 0.674
+anchor_right = 0.072
+anchor_bottom = 0.674
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = "Gearshifting:"
+
+[node name="Label4" type="Label" parent="." unique_id=1451751328]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.5
+anchor_right = 0.254
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " D "
+
+[node name="Label5" type="Label" parent="." unique_id=1543697814]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217
+anchor_top = 0.5
+anchor_right = 0.217
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " S "
+
+[node name="Label6" type="Label" parent="." unique_id=1180531820]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.5
+anchor_right = 0.18
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " A "
+
+[node name="Label7" type="Label" parent="." unique_id=669451743]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.215
+anchor_top = 0.415
+anchor_right = 0.215
+anchor_bottom = 0.415
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " W "
+horizontal_alignment = 1
+
+[node name="exit_button" type="Button" parent="." unique_id=2025019492]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme = ExtResource("1_obyet")
+text = "Exit"
+
+[connection signal="pressed" from="exit_button" to="." method="exit"]

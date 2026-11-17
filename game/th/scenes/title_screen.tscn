@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dwsp26wa1smkt"]
+
+[ext_resource type="Theme" uid="uid://b11svmoj03hcl" path="res://scenes/global_theme.tres" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://tjwifs1ut81h" path="res://scripts/title_screen.gd" id="1_s4lrb"]
+[ext_resource type="PackedScene" uid="uid://buqlc02euoal" path="res://scenes/main.tscn" id="2_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://blb3qxsgewly5" path="res://Cop.svg" id="3_dc4i4"]
+[ext_resource type="PackedScene" uid="uid://cq62vkl4eoa2n" path="res://scenes/lose_screen.tscn" id="3_e54dn"]
+[ext_resource type="PackedScene" uid="uid://bu171pi5l2og6" path="res://scenes/main-2player.tscn" id="3_mykxm"]
+[ext_resource type="PackedScene" uid="uid://42u5jianm8b" path="res://scenes/tutorial_screen.tscn" id="4_3yumr"]
+[ext_resource type="Script" uid="uid://8lfxkadg6dun" path="res://scripts/touch_screen_mode.gd" id="4_mgrm8"]
+[ext_resource type="Script" uid="uid://c08jme85fbcmm" path="res://scripts/two_player_check_button.gd" id="9_tklts"]
+
+[node name="Title_screen" type="Control" unique_id=1563659063]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s4lrb")
+level = ExtResource("2_mgrm8")
+level2p = ExtResource("3_mykxm")
+lose_screen = ExtResource("3_e54dn")
+tutorial_screen = ExtResource("4_3yumr")
+
+[node name="image" type="TextureRect" parent="." unique_id=2090037674]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_dc4i4")
+
+[node name="start" type="Button" parent="." unique_id=1504190589]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -148.0
+offset_right = 30.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_fgkus")
+text = "Start"
+
+[node name="touch_screen_mode" type="CheckButton" parent="." unique_id=1473324146]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme = ExtResource("1_fgkus")
+action_mode = 0
+text = "Touch Screen Mode"
+script = ExtResource("4_mgrm8")
+
+[node name="two_player" type="CheckButton" parent="." unique_id=767598589]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.104
+anchor_right = 1.0
+anchor_bottom = 0.104
+offset_left = -200.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme = ExtResource("1_fgkus")
+action_mode = 0
+text = "Two Player"
+script = ExtResource("9_tklts")
+
+[node name="tutorial" type="Button" parent="." unique_id=1965932318]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.653
+anchor_right = 0.653
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_fgkus")
+text = "Tutorial"
+
+[connection signal="pressed" from="start" to="." method="_on_start"]
+[connection signal="pressed" from="tutorial" to="." method="tutorial"]
