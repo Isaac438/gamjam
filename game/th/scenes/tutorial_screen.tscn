@@ -55,6 +55,39 @@ grow_vertical = 2
 theme = ExtResource("1_obyet")
 text = " Q "
 
+[node name="Label10" type="Label" parent="." unique_id=573179124]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22
+anchor_top = 0.8
+anchor_right = 0.22
+anchor_bottom = 0.8
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " C "
+
+[node name="Label12" type="Label" parent="." unique_id=1863791288]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.854
+anchor_top = 0.4
+anchor_right = 0.854
+anchor_bottom = 0.4
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " X "
+
+[node name="Label14" type="Label" parent="." unique_id=1992820430]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.787
+anchor_top = 0.5
+anchor_right = 0.787
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = " R "
+
 [node name="Label8" type="Label" parent="." unique_id=1631045790]
 layout_mode = 1
 anchors_preset = -1
@@ -76,6 +109,39 @@ anchor_bottom = 0.674
 grow_vertical = 2
 theme = ExtResource("1_obyet")
 text = "Gearshifting:"
+
+[node name="Label9" type="Label" parent="." unique_id=2134291768]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072
+anchor_top = 0.8
+anchor_right = 0.072
+anchor_bottom = 0.8
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = "Change Camera:"
+
+[node name="Label11" type="Label" parent="." unique_id=1546502530]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.4
+anchor_right = 0.7
+anchor_bottom = 0.4
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = "Return to Menu:"
+
+[node name="Label13" type="Label" parent="." unique_id=170453259]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("1_obyet")
+text = "Restart:"
 
 [node name="Label4" type="Label" parent="." unique_id=1451751328]
 layout_mode = 1
