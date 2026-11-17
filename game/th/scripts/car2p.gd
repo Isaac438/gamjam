@@ -22,7 +22,6 @@ const brake_accel := 30.0
 
 const SENS: float = 0.003
 
-var gear := 1
 var third_person_camera_mode: bool = false
 
 func _ready() -> void:
@@ -31,12 +30,12 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("upshift2p"):
-		gear -= 1
-		gear = clamp(gear, 0, 3)
+		global.gear2p -= 1
+		global.gear2p = clamp(global.gear2p, 0, 3)
 		print("upshift")
-	elif  event.is_action_pressed("downshift2p"):
-		gear += 1
-		gear = clamp(gear, 0, 3)
+	elif event.is_action_pressed("downshift2p"):
+		global.gear2p += 1
+		global.gear2p = clamp(global.gear2p, 0, 3)
 		print("downshift")
 
 func _physics_process(delta: float) -> void:
@@ -62,11 +61,11 @@ func _physics_process(delta: float) -> void:
 		cab_camera.current = !third_person_camera_mode
 		third_person_camera.current = third_person_camera_mode
 
-	if Input.is_action_pressed("gas2p") and forward_speed < max_speed[gear]:
+	if Input.is_action_pressed("gas2p") and forward_speed < max_speed[global.gear2p]:
 		if forward_speed < -1.0:
 			target_brake = brake_max
 		else:
-			target_force = max_engine_force[gear]
+			target_force = max_engine_force[global.gear2p]
 			target_brake = 0.0
 
 	elif Input.is_action_pressed("brake2p"):
@@ -131,5 +130,4 @@ func _physics_process(delta: float) -> void:
 			steering = 0.0
 			
 func _process(_delta: float) -> void:
-	global.gear = gear
 	global.player_position = global_position

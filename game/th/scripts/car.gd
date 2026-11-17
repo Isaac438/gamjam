@@ -56,7 +56,7 @@ func _input(event: InputEvent) -> void:
 		if !global.two_player:
 			title_screen = get_parent().get_parent()
 		else:
-			title_screen = get_parent().get_parent().get_parent().get_parent()
+			title_screen = get_parent().get_parent().get_parent().get_parent().get_parent()
 		if get_tree():
 			title_screen.restart()
 		else:
