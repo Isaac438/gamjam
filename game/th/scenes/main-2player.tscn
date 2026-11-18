@@ -15,8 +15,15 @@
 [ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="14_562lr"]
 [ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="15_ock70"]
 [ext_resource type="PackedScene" uid="uid://3l3ihweg7slu" path="res://scenes/obstacles/park_floor.tscn" id="16_24ucy"]
+[ext_resource type="Script" uid="uid://obr7p8mraypq" path="res://scripts/menu_button.gd" id="16_gfy4l"]
 [ext_resource type="Script" uid="uid://dnrsahr5dyxne" path="res://scripts/car2p.gd" id="16_lqj67"]
 [ext_resource type="Script" uid="uid://gkielikewrn6" path="res://scripts/gear_icons2p.gd" id="16_oiva7"]
+[ext_resource type="Script" uid="uid://0sayice55y4n" path="res://scripts/restart_button.gd" id="17_avc36"]
+[ext_resource type="Script" uid="uid://bmyxeo04fqkrv" path="res://scripts/touch_screen_elements.gd" id="17_dsl4v"]
+[ext_resource type="Script" uid="uid://dtij0oeycoc5e" path="res://scripts/upshift.gd" id="18_ilupx"]
+[ext_resource type="Script" uid="uid://lwvgpe66a7kj" path="res://scripts/downshift.gd" id="20_avc36"]
+[ext_resource type="Script" uid="uid://dbpbp85sea4ts" path="res://scripts/upshift2p.gd" id="22_uumhs"]
+[ext_resource type="Script" uid="uid://fg7fy8htbw0p" path="res://scripts/downshift2p.gd" id="23_5000p"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jbj1t"]
 geometry_parsed_geometry_type = 1
@@ -144,22 +151,85 @@ theme = ExtResource("4_nupgu")
 text = "3"
 horizontal_alignment = 1
 
-[node name="VirtualJoystick" type="VirtualJoystick" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug" unique_id=503173927]
+[node name="touch_screen_elements2" type="Control" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug" unique_id=1322276726]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_dsl4v")
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/touch_screen_elements2" unique_id=503173927]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.949
 anchor_right = 0.5
 anchor_bottom = 0.949
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = 247.0
+offset_top = 536.992
+offset_right = 287.0
+offset_bottom = 576.992
 grow_horizontal = 2
 grow_vertical = 0
-deadzone_ratio = 0.15
+deadzone_ratio = 0.07
 action_left = &"joy_left"
 action_right = &"joy_right"
 action_up = &"gas"
 action_down = &"brake"
+
+[node name="Menu" type="Button" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/touch_screen_elements2" unique_id=739056808]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("4_nupgu")
+text = "Menu"
+script = ExtResource("16_gfy4l")
+
+[node name="Restart" type="Button" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/touch_screen_elements2" unique_id=1259285844]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.0
+anchor_bottom = 3.0
+offset_top = -60.04001
+offset_right = 8.0
+offset_bottom = -52.04001
+theme = ExtResource("4_nupgu")
+text = "Restart"
+script = ExtResource("17_avc36")
+
+[node name="upshift" type="Button" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/touch_screen_elements2" unique_id=590652906]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.881
+anchor_right = 1.0
+anchor_bottom = 0.881
+offset_left = 457.0
+offset_top = 490.648
+offset_right = 534.0
+offset_bottom = 535.648
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_nupgu")
+text = "upshift"
+script = ExtResource("18_ilupx")
+
+[node name="downshift" type="Button" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/touch_screen_elements2" unique_id=1794144253]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 457.0
+offset_top = 563.0
+offset_right = 534.0
+offset_bottom = 608.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_nupgu")
+text = "downshift"
+script = ExtResource("20_avc36")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1271928890]
 layout_mode = 2
@@ -173,23 +243,6 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="crosshair_and_debug2" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer2/SubViewport" unique_id=107418903]
-
-[node name="VirtualJoystick2" type="VirtualJoystick" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=50306737]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.949
-anchor_right = 0.5
-anchor_bottom = 0.949
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-deadzone_ratio = 0.15
-action_left = &"joy_left2p"
-action_right = &"joy_right2p"
-action_up = &"gas"
-action_down = &"brake"
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=1631086486]
 anchors_preset = 15
@@ -258,6 +311,66 @@ layout_mode = 2
 theme = ExtResource("4_nupgu")
 text = "3"
 horizontal_alignment = 1
+
+[node name="touch_screen_elements" type="Control" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2" unique_id=1546084461]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_dsl4v")
+
+[node name="upshift" type="Button" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/touch_screen_elements" unique_id=1471295533]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.881
+anchor_right = 1.0
+anchor_bottom = 0.881
+offset_left = 457.0
+offset_top = 490.648
+offset_right = 534.0
+offset_bottom = 535.648
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_nupgu")
+text = "upshift"
+script = ExtResource("22_uumhs")
+
+[node name="downshift" type="Button" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/touch_screen_elements" unique_id=587405961]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 457.0
+offset_top = 563.0
+offset_right = 534.0
+offset_bottom = 608.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_nupgu")
+text = "downshift"
+script = ExtResource("23_5000p")
+
+[node name="VirtualJoystick2" type="VirtualJoystick" parent="HBoxContainer/SubViewportContainer2/SubViewport/crosshair_and_debug2/touch_screen_elements" unique_id=50306737]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.949
+anchor_right = 0.5
+anchor_bottom = 0.949
+offset_left = 247.0
+offset_top = 536.992
+offset_right = 287.0
+offset_bottom = 576.992
+grow_horizontal = 2
+grow_vertical = 0
+deadzone_ratio = 0.07
+action_left = &"joy_left2p"
+action_right = &"joy_right2p"
+action_up = &"gas2p"
+action_down = &"brake2p"
 
 [node name="VehicleBody3D2" parent="HBoxContainer/SubViewportContainer2/SubViewport" unique_id=1589069954 instance=ExtResource("1_lqj67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 6.976, 0)

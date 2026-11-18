@@ -67,6 +67,8 @@ func _input(event: InputEvent) -> void:
 	elif  event.is_action_pressed("downshift"):
 		gear += 1
 		gear = clamp(gear, 0, 3)
+	elif global.touch_screen:
+		gear = global.gear
 	elif event.is_action_pressed("back_to_title"):
 		var title_screen: Control
 		if !global.two_player:
@@ -174,7 +176,8 @@ func _physics_process(delta: float) -> void:
 			steering = 0.0
 			
 func _process(_delta: float) -> void:
-	global.gear = gear
+	if !global.touch_screen:
+		global.gear = gear
 	global.player_position = global_position
 	
 func calculate_joystick_steering(turn_input: float, left: bool) -> float:

@@ -145,9 +145,9 @@ func calculate_joystick_steering(turn_input: float, left: bool) -> float:
 		return 0.0
 	
 	var speed: float = linear_velocity.length()
-	var steer_max: float = 0.6
+	var steer_max: float = 0.8
 	if speed > 0.01:
-		steer_max = min(0.6, speed_modifier / speed)
+		steer_max = min(0.8, speed_modifier / speed)
 	
 	var final_steer: float = min(turn_input, steer_max)
 	return final_steer if left else -final_steer
