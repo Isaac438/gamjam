@@ -12,7 +12,6 @@ func _ready() -> void:
 	gears = [N, First, Second, Third]
 	
 func _process(_delta: float) -> void:
-	prints(global.gear2p, gear)
 	if global.gear2p != gear:
 		gears[gear].modulate = Color(1, 1, 1, 1)
 		gear = global.gear2p

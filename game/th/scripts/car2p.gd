@@ -32,11 +32,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("upshift2p"):
 		global.gear2p -= 1
 		global.gear2p = clamp(global.gear2p, 0, 3)
-		print("upshift")
+
 	elif event.is_action_pressed("downshift2p"):
 		global.gear2p += 1
 		global.gear2p = clamp(global.gear2p, 0, 3)
-		print("downshift")
 
 func _physics_process(delta: float) -> void:
 	var target_force := 0.0
@@ -92,7 +91,7 @@ func _physics_process(delta: float) -> void:
 		brake_accel * delta
 	)
 	
-	if Input.is_action_pressed("turn_left2p"):
+	if Input.is_action_pressed("turn_left2p") and !global.touch_screen:
 		var steer_max := speed_modifier / linear_velocity.length()
 		if steer_max > 0.6:
 			steer_max = 0.6
@@ -103,15 +102,22 @@ func _physics_process(delta: float) -> void:
 			steer_speed*delta
 		)
 		
-	elif Input.is_action_pressed("turn_right2p"):
+	elif Input.is_action_pressed("joy_left2p") and global.touch_screen:
+		var turn_input = Input.get_action_strength("joy_left2p")
+		steering = calculate_joystick_steering(turn_input, true)
+		
+	elif Input.is_action_pressed("turn_right2p") and !global.touch_screen:
 		var steer_max := -speed_modifier / linear_velocity.length()
-		if steer_max < -0.5:
-			steer_max = -0.5
+		if steer_max < -0.6:
+			steer_max = -0.6
 		steering = move_toward(
 			steering,
 			steer_max,
 			steer_speed*delta
 		)
+	elif Input.is_action_pressed("joy_right2p") and global.touch_screen:
+		var turn_input = Input.get_action_strength("joy_right2p")
+		steering = calculate_joystick_steering(turn_input, false)
 		
 	else:
 		if steering > 0.02:
@@ -131,3 +137,17 @@ func _physics_process(delta: float) -> void:
 			
 func _process(_delta: float) -> void:
 	global.player_position = global_position
+	
+func calculate_joystick_steering(turn_input: float, left: bool) -> float:
+	var deadzone: float = 0.1
+	
+	if turn_input < deadzone:
+		return 0.0
+	
+	var speed: float = linear_velocity.length()
+	var steer_max: float = 0.6
+	if speed > 0.01:
+		steer_max = min(0.6, speed_modifier / speed)
+	
+	var final_steer: float = min(turn_input, steer_max)
+	return final_steer if left else -final_steer

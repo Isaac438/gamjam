@@ -26,7 +26,7 @@ var gear := 1
 var third_person_camera_mode: bool = false
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if !global.touch_screen else Input.MOUSE_MODE_VISIBLE
 	third_person_camera.current = false
 	cab_camera.current = true
 	global.going = true
@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 			
 	#endregion
 	
-	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and !global.touch_screen:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("escape_key") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -64,11 +64,9 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("upshift"):
 		gear -= 1
 		gear = clamp(gear, 0, 3)
-		print("upshift")
 	elif  event.is_action_pressed("downshift"):
 		gear += 1
 		gear = clamp(gear, 0, 3)
-		print("downshift")
 	elif event.is_action_pressed("back_to_title"):
 		var title_screen: Control
 		if !global.two_player:
@@ -131,7 +129,7 @@ func _physics_process(delta: float) -> void:
 		brake_accel * delta
 	)
 	
-	if Input.is_action_pressed("turn_left"):
+	if Input.is_action_pressed("turn_left") and !global.touch_screen:
 		var steer_max := speed_modifier / linear_velocity.length()
 		if steer_max > 0.6:
 			steer_max = 0.6
@@ -142,15 +140,22 @@ func _physics_process(delta: float) -> void:
 			steer_speed*delta
 		)
 		
-	elif Input.is_action_pressed("turn_right"):
+	elif Input.is_action_pressed("joy_left") and global.touch_screen:
+		var turn_input = Input.get_action_strength("joy_left")
+		steering = calculate_joystick_steering(turn_input, true)
+		
+	elif Input.is_action_pressed("turn_right") and !global.touch_screen:
 		var steer_max := -speed_modifier / linear_velocity.length()
-		if steer_max < -0.5:
-			steer_max = -0.5
+		if steer_max < -0.6:
+			steer_max = -0.6
 		steering = move_toward(
 			steering,
 			steer_max,
 			steer_speed*delta
 		)
+	elif Input.is_action_pressed("joy_right") and global.touch_screen:
+		var turn_input = Input.get_action_strength("joy_right")
+		steering = calculate_joystick_steering(turn_input, false)
 		
 	else:
 		if steering > 0.02:
@@ -171,3 +176,17 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	global.gear = gear
 	global.player_position = global_position
+	
+func calculate_joystick_steering(turn_input: float, left: bool) -> float:
+	var deadzone: float = 0.1
+	
+	if turn_input < deadzone:
+		return 0.0
+	
+	var speed: float = linear_velocity.length()
+	var steer_max: float = 0.6
+	if speed > 0.01:
+		steer_max = min(0.6, speed_modifier / speed)
+	
+	var final_steer: float = min(turn_input, steer_max)
+	return final_steer if left else -final_steer
