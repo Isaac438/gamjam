@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://dpw10kp6kjpib" path="res://scripts/map.gd" id="5_choun"]
 [ext_resource type="Script" uid="uid://cqct8c3ft1vir" path="res://scripts/debug_messages.gd" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://cwy81mwsi36df" path="res://scripts/gear_icons.gd" id="6_jbj1t"]
+[ext_resource type="Shader" uid="uid://dq4vrgt3634vc" path="res://scripts/star.gdshader" id="6_muem4"]
 [ext_resource type="PackedScene" uid="uid://rah6jv0oc4mt" path="res://scenes/road/road.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dnlbhqy6uwknl" path="res://scenes/obstacles/building.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dks6tccjlkmf7" path="res://scenes/obstacles/grass.tscn" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://bjxj560nm2vc3" path="res://star.jpg" id="7_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bhrieulb2wtrt" path="res://scenes/road/road_center.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://xk6taeodcby7" path="res://scenes/loading_screen.tscn" id="9_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://3l3ihweg7slu" path="res://scenes/obstacles/park_floor.tscn" id="11_ya4ey"]
@@ -31,6 +33,9 @@ sky = SubResource("Sky_0wfyh")
 glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_o6xl0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+shader = ExtResource("6_muem4")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jbj1t"]
 geometry_parsed_geometry_type = 1
@@ -123,6 +128,54 @@ layout_mode = 2
 theme = ExtResource("3_85g3d")
 text = "3"
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="crosshair_and_debug" unique_id=924792951]
+anchors_preset = -1
+anchor_left = 0.182
+anchor_right = 0.972
+anchor_bottom = 0.137
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="crosshair_and_debug/HBoxContainer" unique_id=1677911248]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 2
+texture = ExtResource("7_dp3eg")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="crosshair_and_debug/HBoxContainer" unique_id=1579907591]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 2
+texture = ExtResource("7_dp3eg")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="crosshair_and_debug/HBoxContainer" unique_id=2027665350]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 2
+texture = ExtResource("7_dp3eg")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="crosshair_and_debug/HBoxContainer" unique_id=99938051]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 2
+texture = ExtResource("7_dp3eg")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="crosshair_and_debug/HBoxContainer" unique_id=1909073171]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 2
+texture = ExtResource("7_dp3eg")
+expand_mode = 2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1871210762]
 navigation_mesh = SubResource("NavigationMesh_jbj1t")

@@ -5,7 +5,6 @@ extends VehicleBody3D
 @onready var camera_arm: SpringArm3D = $Head/CameraArm
 @onready var third_person_camera: Camera3D = $Head/CameraArm/ThirdPersonCamera
 @export var lose_screen: PackedScene
-@export var ui: CanvasLayer
 
 const steer_speed: float = 1.0
 const steer_diminish: float = 1.0

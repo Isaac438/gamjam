@@ -22,6 +22,8 @@
 [ext_resource type="Script" uid="uid://bmyxeo04fqkrv" path="res://scripts/touch_screen_elements.gd" id="17_dsl4v"]
 [ext_resource type="Script" uid="uid://dtij0oeycoc5e" path="res://scripts/upshift.gd" id="18_ilupx"]
 [ext_resource type="Script" uid="uid://lwvgpe66a7kj" path="res://scripts/downshift.gd" id="20_avc36"]
+[ext_resource type="Shader" uid="uid://dq4vrgt3634vc" path="res://scripts/star.gdshader" id="20_kvlj2"]
+[ext_resource type="Texture2D" uid="uid://bjxj560nm2vc3" path="res://star.jpg" id="21_6absc"]
 [ext_resource type="Script" uid="uid://dbpbp85sea4ts" path="res://scripts/upshift2p.gd" id="22_uumhs"]
 [ext_resource type="Script" uid="uid://fg7fy8htbw0p" path="res://scripts/downshift2p.gd" id="23_5000p"]
 
@@ -46,6 +48,9 @@ sky = SubResource("Sky_0wfyh")
 glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_o6xl0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_db4ic"]
+shader = ExtResource("20_kvlj2")
 
 [node name="main" type="Node3D" unique_id=255340109]
 
@@ -230,6 +235,49 @@ grow_vertical = 0
 theme = ExtResource("4_nupgu")
 text = "downshift"
 script = ExtResource("20_avc36")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug" unique_id=781191077]
+anchors_preset = -1
+anchor_left = 0.182
+anchor_right = 0.972
+anchor_bottom = 0.137
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/HBoxContainer" unique_id=819627475]
+material = SubResource("ShaderMaterial_db4ic")
+layout_mode = 2
+texture = ExtResource("21_6absc")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/HBoxContainer" unique_id=1422922514]
+visible = false
+material = SubResource("ShaderMaterial_db4ic")
+layout_mode = 2
+texture = ExtResource("21_6absc")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/HBoxContainer" unique_id=518998102]
+visible = false
+material = SubResource("ShaderMaterial_db4ic")
+layout_mode = 2
+texture = ExtResource("21_6absc")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/HBoxContainer" unique_id=749808984]
+visible = false
+material = SubResource("ShaderMaterial_db4ic")
+layout_mode = 2
+texture = ExtResource("21_6absc")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer/SubViewportContainer/SubViewport/crosshair_and_debug/HBoxContainer" unique_id=1443764799]
+visible = false
+material = SubResource("ShaderMaterial_db4ic")
+layout_mode = 2
+texture = ExtResource("21_6absc")
+expand_mode = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1271928890]
 layout_mode = 2
